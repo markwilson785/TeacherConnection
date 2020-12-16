@@ -20,8 +20,8 @@ class PeopleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        teachers = ["Alan","Parker"]
-        students = ["Mark","Michael"]
+        teachers = ["Parker","Ben","Johnny","Kevin","Jeff"]
+        students = ["Mark","Michael","Melissa","Brianna","Talmage"]
     }
 }
 

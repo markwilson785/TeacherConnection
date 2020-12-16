@@ -16,6 +16,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUx-41-9oc">
+                                <rect key="frame" x="34" y="179" width="341" height="330"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="59" translatesAutoresizingMaskIntoConstraints="NO" id="tIc-Qm-iXT">
                                 <rect key="frame" x="16" y="152" width="382" height="694"/>
                                 <subviews>
@@ -25,12 +32,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="axX-2g-vQP">
-                                        <rect key="frame" x="32.5" y="79.5" width="317" height="441"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xS9-5e-JUS">
-                                        <rect key="frame" x="168" y="579.5" width="46" height="114.5"/>
+                                        <rect key="frame" x="168" y="79.5" width="46" height="614.5"/>
                                         <state key="normal" title="Button"/>
                                     </button>
                                 </subviews>
@@ -43,7 +46,7 @@
                             <constraint firstItem="tIc-Qm-iXT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="64" id="BQg-eW-Bdo"/>
                             <constraint firstItem="tIc-Qm-iXT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="DNI-m8-btb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tIc-Qm-iXT" secondAttribute="bottom" constant="16" id="MqR-gz-76E"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tIc-Qm-iXT" secondAttribute="trailing" constant="16" id="RGV-9j-lW6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tIc-Qm-iXT" secondAttribute="trailing" priority="100" constant="16" id="RGV-9j-lW6"/>
                             <constraint firstItem="tIc-Qm-iXT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="64" id="Sxw-6d-PpN"/>
                             <constraint firstItem="tIc-Qm-iXT" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="lar-ih-PO6"/>
                             <constraint firstItem="tIc-Qm-iXT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="yq1-9j-sbQ"/>
