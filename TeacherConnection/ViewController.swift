@@ -34,8 +34,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         teachers = ["Parker","Ben","Johnny","Kevin","Jeff"]
         students = ["Mark","Michael","Melissa","Brianna","Talmage"]
+    
     }
     
-    
+   
 }
 

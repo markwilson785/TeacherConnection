@@ -6,6 +6,8 @@
 //
 
 import UIKit
+
+
 class PeopleViewController: UIViewController {
     enum TableSection: Int {
         case teachers
@@ -110,4 +112,5 @@ extension PeopleViewController: UITableViewDelegate {
         }
         tableView.reloadData()
     }
+    
 }
