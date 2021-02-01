@@ -11,8 +11,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var teachers: [String] = []
-    var students: [String] = []
+    var teachers: [Person] = []
+    var students: [Person] = []
     
     @IBOutlet weak var displayLabel: UILabel!
     
@@ -26,15 +26,27 @@ class ViewController: UIViewController {
     @IBAction func RandomButton(_ sender: Any){
         guard let randomTeachers = teachers.randomElement(),
               let randomStudents = students.randomElement() else { return }
-        teacherLabel.text = String(randomTeachers)
-        displayLabel.text = String(randomStudents)
+        teacherLabel.text = randomTeachers.name
+        displayLabel.text = randomStudents.name
         
     }
     
     override func viewDidLoad() {
-        teachers = ["Parker","Ben","Johnny","Kevin","Jeff"]
-        students = ["Mark","Michael","Melissa","Brianna","Talmage"]
-    
+      
+        if let people = Person.loadFromFile() {
+            for person in people {
+                if person.isTeacher == true {
+                    teachers.append(person)
+                }else {
+                    students.append(person)
+                }
+                
+            }
+            
+        } else {
+            students = Person.loadSampleTeacherNames()
+        }
+        
     }
     
    

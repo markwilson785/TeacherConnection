@@ -16,14 +16,28 @@ class PeopleViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
-    var teachers = [String]()
-    var students = [String]()
+    @IBOutlet weak var editButton: UINavigationItem!
+    
+    var newTeachers = [Person]()
+    var newStudents = [Person]()
     var isAddingTeacher = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        teachers = ["Parker","Ben","Johnny","Kevin","Jeff"]
-        students = ["Mark","Michael","Melissa","Brianna","Talmage"]
+        tableView.delegate = self
+        if let people = Person.loadFromFile() {
+            for person in people {
+                if person.isTeacher == true {
+                    newTeachers.append(person)
+                }else {
+                    newStudents.append(person)
+                }
+                
+            }
+            
+        } else {
+            newStudents = Person.loadSampleTeacherNames()
+        }
     }
 }
 
@@ -34,30 +48,31 @@ extension PeopleViewController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return teachers.count + 1
+            return newTeachers.count + 1
         }
         else {
-            return students.count + 1
+            return newStudents.count + 1
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "peopleCell", for: indexPath)
-
+        
         var name = ""
         let tableSection = TableSection (rawValue: indexPath.section)!
         switch tableSection {
         case .teachers:
-            if indexPath.row == teachers.count {
+            if indexPath.row == newTeachers.count {
                 name = "➕ Add New Teacher"
             } else {
-                name = teachers[indexPath.row]
+                name = newTeachers[indexPath.row].name
             }
         case .students:
-            if indexPath.row == students.count {
+            if indexPath.row == newStudents.count {
                 name = "➕ Add New Student"
             } else {
-                name = students[indexPath.row]
+                
+                name = newStudents[indexPath.row].name
             }
         }
         cell.textLabel?.text = name
@@ -87,9 +102,36 @@ extension PeopleViewController: UITableViewDelegate {
             isAddingTeacher = false
             
         }
-        present(newPersonAlert(), animated: true, completion: nil)
-
+        if indexPath.row == newTeachers.count {
+            present(newPersonAlert(), animated: true, completion: nil)
+        }
+        
+        
     }
+    
+    @IBAction func editTappedFromTableView(_ sender: Any) {
+        let tableViewEditingMode = tableView.isEditing
+        tableView.setEditing(!tableViewEditingMode, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            tableView.beginUpdates()
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            tableView.endUpdates()
+        }
+    }
+    
+    
+    
     func newPersonAlert() -> UIAlertController {
         let alert = UIAlertController(title: "Add new Person", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: { (_) in
@@ -106,11 +148,20 @@ extension PeopleViewController: UITableViewDelegate {
     }
     func saveNewPerson(name:String){
         if isAddingTeacher {
-            teachers.append(name)
+            
+            let teacher = Person(name: name, isTeacher: true)
+            newTeachers.append(teacher)
+            //            Person.saveToFile(person: teachers)
+            Person.saveToFile(person: newTeachers + newStudents)
         } else {
-            students.append(name)
+            
+            let student = Person(name: name, isTeacher: false)
+            newStudents.append(student)
+            Person.saveToFile(person: newStudents + newTeachers)
         }
         tableView.reloadData()
     }
     
 }
+
+

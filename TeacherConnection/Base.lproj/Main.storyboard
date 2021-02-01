@@ -135,8 +135,11 @@
                             <constraint firstItem="RTw-TK-oss" firstAttribute="leading" secondItem="EnU-qY-V8f" secondAttribute="leading" id="eyk-RQ-qa5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="O4i-0t-dr7"/>
+                    <navigationItem key="navigationItem" id="O4i-0t-dr7">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="edit" id="vN5-MR-V6I"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="editButton" destination="O4i-0t-dr7" id="3IQ-ka-p5j"/>
                         <outlet property="tableView" destination="RTw-TK-oss" id="oQT-Eb-YJK"/>
                     </connections>
                 </viewController>

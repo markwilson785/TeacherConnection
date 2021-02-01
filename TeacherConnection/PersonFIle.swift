@@ -13,11 +13,36 @@ struct Person: Codable {
     
     
     static var archiveURL: URL {
-           let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-           let archiveURL = documentsURL.appendingPathComponent("person").appendingPathExtension("plist")
-           return archiveURL
-
-}
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let archiveURL = documentsURL.appendingPathComponent("person").appendingPathExtension("plist")
+        return archiveURL
+    }
+    //    static let DocumentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    //
+    //        static let ArchiveURL = DocumentsDirectory.appendingPathComponent("person").appendingPathExtension("plist")
+    
+    static func loadSampleTeacherNames() -> [Person] {
+        return [
+            
+            Person(name: "Parker", isTeacher: true),
+            Person(name: "Ben", isTeacher: true),
+            Person(name: "Johnny", isTeacher: true),
+            Person(name: "Kevin", isTeacher: true),
+            Person(name: "Jeff", isTeacher: true)
+        ]
+    }
+    
+    static func loadSampleStudentNames() -> [Person] {
+        return [
+            
+            Person(name: "Mark", isTeacher: false),
+            Person(name:"Michael", isTeacher: false),
+            Person(name:"Melissa", isTeacher: false),
+            Person(name:"Brianna", isTeacher: false),
+            Person(name:"Talmage", isTeacher: false)
+        ]
+    }
+    
     static func saveToFile(person: [Person]) {
         let encoder = PropertyListEncoder()
         do {
@@ -41,5 +66,5 @@ struct Person: Codable {
         }
         
     }
-
+    
 }
