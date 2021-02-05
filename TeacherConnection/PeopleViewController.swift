@@ -18,6 +18,8 @@ class PeopleViewController: UIViewController {
     
     @IBOutlet weak var editButton: UINavigationItem!
     
+    
+    
     var newTeachers = [Person]()
     var newStudents = [Person]()
     var isAddingTeacher = true
@@ -105,7 +107,9 @@ extension PeopleViewController: UITableViewDelegate {
         if indexPath.row == newTeachers.count {
             present(newPersonAlert(), animated: true, completion: nil)
         }
-        
+        if indexPath.row == newStudents.count {
+            present(newPersonAlert(), animated: true, completion: nil)
+        }
         
     }
     
@@ -129,7 +133,23 @@ extension PeopleViewController: UITableViewDelegate {
             tableView.endUpdates()
         }
     }
-    
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath:
+         IndexPath) {
+            if editingStyle == .delete {
+                let tableSection = TableSection (rawValue: indexPath.section)!
+                switch tableSection {
+                case .teachers:
+                    newTeachers.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: . automatic)
+                case .students:
+                    newStudents.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: . automatic)
+                }
+                Person.saveToFile(person: newTeachers + newStudents)
+            }
+        }
+
+
     
     
     func newPersonAlert() -> UIAlertController {

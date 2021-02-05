@@ -136,7 +136,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="O4i-0t-dr7">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="edit" id="vN5-MR-V6I"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="edit" id="vN5-MR-V6I">
+                            <connections>
+                                <action selector="editTappedFromTableView:" destination="iTB-Tc-yIC" id="xGo-Z7-8gw"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="editButton" destination="O4i-0t-dr7" id="3IQ-ka-p5j"/>

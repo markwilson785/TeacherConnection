@@ -30,9 +30,7 @@ class ViewController: UIViewController {
         displayLabel.text = randomStudents.name
         
     }
-    
-    override func viewDidLoad() {
-      
+    override func viewWillAppear(_ animated: Bool) {
         if let people = Person.loadFromFile() {
             for person in people {
                 if person.isTeacher == true {
@@ -46,6 +44,11 @@ class ViewController: UIViewController {
         } else {
             students = Person.loadSampleTeacherNames()
         }
+    }
+    
+    override func viewDidLoad() {
+      
+       
         
     }
     
