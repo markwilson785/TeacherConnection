@@ -68,3 +68,14 @@ struct Person: Codable {
     }
     
 }
+
+extension Person: Equatable {
+    static func ==(lhs: Person, rhs: Person) -> Bool{
+        if lhs.name == rhs.name,
+           lhs.isTeacher == rhs.isTeacher {
+            return true
+        } else {
+             return false
+        }
+    }
+}
