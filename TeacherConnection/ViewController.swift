@@ -72,8 +72,13 @@ class ViewController: UIViewController {
                   let removeIndex = temporaryStudents.firstIndex(of: randomStudent) else { return }
             temporaryStudents.remove(at: removeIndex)
             //if studentNumber == 1 then no comma
-            stringForLabel += "\(randomStudent.name), "
-            studentNumber -= 1
+            if studentNumber == 1 {
+                stringForLabel += "\(randomStudent.name)"
+            } else {
+                stringForLabel += "\(randomStudent.name),"
+
+            }
+                        studentNumber -= 1
         }
         label.text = stringForLabel
     }
